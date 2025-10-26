@@ -27,15 +27,28 @@ weatherForm.addEventListener("submit", async event => {
 
 async function getWeatherData(city){
 
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
+    try{
 
-    const response = await fetch(apiUrl);
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
-    if(!response.ok){
-        throw new Error("Não foi possível encontrar dados de clima")
+        const response = await fetch(apiUrl);
+
+        console.log(response)
+
+        return await response.json();
+
+    }
+    catch(err){
+        console.log(err);
     }
 
-    return await response.json();
+    
+
+   // if(!response.ok){
+   //     throw new Error("Não foi possível encontrar dados de clima")
+   // }
+
+    
 };
 
 function displayWeatherInfo(data){
